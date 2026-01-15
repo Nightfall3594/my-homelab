@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-nightfall-is-a-dev
+spec:
+  type: ClusterIP
+  selector:
+    app: api-nightfall-is-a-dev
+  ports:
+    - port: 80
+      targetPort: 80
