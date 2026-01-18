@@ -1,0 +1,6 @@
+# example helm values.yaml for future reference
+volumes:
+  hostPath: <filepath>
+postgres:
+  user: ""
+  password: ""
