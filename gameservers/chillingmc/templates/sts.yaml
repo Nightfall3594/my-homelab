@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chillingmc
+  labels:
+    resource-type: gameserver
+spec:
+  serviceName: chillingmc
+  selector:
+    matchLabels:
+      app: chillingmc
+  template:
+    metadata:
+      labels:
+        app: chillingmc
+    spec:
+      containers:
+        - name: chillingmc
+          image: {{ .Values.image }}
+          ports:
+            - containerPort: 25565
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+            {{- end }}
+          volumeMounts:
+            - name: chillingmc-pvc
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: chillingmc-pvc
+      spec:
+        storageClassName: local-path
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi

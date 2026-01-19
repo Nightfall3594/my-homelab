@@ -1,0 +1,11 @@
+image: itzg/minecraft-server:stable-java25
+volumePath: /path/to/pv/host
+env:
+  # add more keys depending on env vars
+  EULA: TRUE
+  MEMORY: 4G
+  VERSION: 1.21.10
+  DIFFICULTY: hard
+  ONLINE_MODE: false
+  TYPE: FABRIC
+  
