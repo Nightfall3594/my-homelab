@@ -14,6 +14,11 @@ spec:
       labels:
         app: chillingmc
     spec:
+      tolerations:
+        - key: node-role
+          operator: Equal
+          value: gameserver
+          effect: NoSchedule
       containers:
         - name: chillingmc
           image: {{ .Values.image }}
