@@ -6,7 +6,6 @@ metadata:
     app: nightfall-is-a-dev
 spec:
   replicas: 1
-  nodeSelector: {{ .Values.nodes.cms }}
   selector:
     matchLabels:
       app: nightfall-is-a-dev

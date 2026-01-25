@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: nightfall-is-a-dev
+  annotations:
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+  name: cms-ingress
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: nightfall.is-a.dev
+    http:
+      paths:
+      - backend:
+          service:
+            name: nightfall-is-a-dev
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+
+  - host: api.nightfall-labs.duckdns.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: api-nightfall-is-a-dev
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+
+  tls:
+  - hosts:
+    - nightfall.is-a.dev
+    secretName: nightfall-is-a-dev-tls
+  - hosts:
+    - api.nightfall-labs.duckdns.org
+    secretName: api-nightfall-is-a-dev-tls
+status:
+  loadBalancer: {}

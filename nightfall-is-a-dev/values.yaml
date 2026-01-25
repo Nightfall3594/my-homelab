@@ -1,7 +1,10 @@
 images:
-  cms: nightfall3594/nightfall-is-a-dev:latest
-  api: nightfall3594/api-nightfall-is-a-dev:latest
+  cms: <cms-image>
+  api: <cms-api-image>
 
-nodes:
-  cms: vps
-  api: vps
+db:
+  user: <db-user>
+  password: <db-password>
+  host: <db-host>
+  port: <db-port>
+  name: <db-name>

@@ -6,26 +6,29 @@ metadata:
     app: api-nightfall-is-a-dev
 spec:
   replicas: 1
-  nodeSelector: {{ .Values.nodes.api }}
   selector:
     matchLabels:
       app: api-nightfall-is-a-dev
-  templates:
-    containers:
-      - name: api-nightfall-is-a-dev
-        image: {{ .Values.images.api }}
-        env:
-          - name: DATABASE_USER
-            value: {{ .Values.db.user }}
+  template:
+    metadata:
+      labels:
+        app: api-nightfall-is-a-dev
+    spec:
+      containers:
+        - name: api-nightfall-is-a-dev
+          image: "{{ .Values.images.api }}"
+          env:
+            - name: DATABASE_USER
+              value: "{{ .Values.db.user }}"
 
-          - name: DATABASE_PASSWORD
-            value: {{ .Values.db.password }}
+            - name: DATABASE_PASSWORD
+              value: "{{ .Values.db.password }}"
 
-          - name: DATABASE_HOST
-            value: {{ .Values.db.user }}
+            - name: DATABASE_HOST
+              value: "{{ .Values.db.host }}"
 
-          - name: DATABASE_PORT
-            value: {{ .Values.db.user }}
+            - name: DATABASE_PORT
+              value: "{{ .Values.db.port }}"
 
-          - name: DATABASE_NAME
-            value: {{ .Values.db.name }}
+            - name: DATABASE_NAME
+              value: "{{ .Values.db.name }}"
