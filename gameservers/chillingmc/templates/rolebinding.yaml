@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: chillingmc-server-manager-binding
+  namespace: chillingmc
+subjects:
+  - kind: ServiceAccount
+    name: chillingmc-servermanager
+    namespace: chillingmc
+roleRef:
+  kind: Role
+  name: chillingmc-server-manager
+  apiGroup: rbac.authorization.k8s.io
